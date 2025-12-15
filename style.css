@@ -16,7 +16,6 @@ body {
     align-items: center;
 }
 
-
 #close-btn {
     position: absolute;
     top: 15px;
@@ -39,7 +38,6 @@ body {
     background-color: rgba(255, 0, 0, 1);
 }
 
-
 .hidden {
     display: none !important;
 }
@@ -60,13 +58,13 @@ body {
 }
 
 .ui-hidden {
-    opacity: 0;
-    pointer-events: none;
+    display: none !important; /* Garante que suma */
 }
 
 .emulator-box {
     text-align: center;
     margin-bottom: 50px;
+    width: 100%;
 }
 
 #status-message {
@@ -77,6 +75,7 @@ body {
     letter-spacing: 4px;
     background: -webkit-linear-gradient(#fff, #aaa);
     -webkit-background-clip: text;
+    background-clip: text; 
     -webkit-text-fill-color: transparent;
 }
 
@@ -112,6 +111,7 @@ body {
     transform: scale(1.1) rotate(90deg);
 }
 
+/* RODAPÉ INTELIGENTE */
 .contact-footer {
     position: absolute;
     bottom: 20px;
@@ -121,10 +121,12 @@ body {
     font-size: 0.8rem;
     color: #666;
     z-index: 20;
+    pointer-events: none; /* Permite clicar no jogo através do rodapé vazio */
 }
 
 .dev-link {
-color: #ff0055; 
+    pointer-events: auto; /* Reativa o clique só no link */
+    color: #ff0055; 
     text-decoration: none; 
     font-weight: bold;
     transition: all 0.3s ease;
@@ -136,17 +138,18 @@ color: #ff0055;
     cursor: pointer;
 }
 
+/* AVISO */
 .notice-box {
     position: absolute;
     top: 20px;
     left: 20px;
-    width: 250px; /* Largura fixa para não quebrar texto */
-    background-color: #ffffff; /* Fundo Branco */
-    border: 3px solid #ff0000; /* Borda Vermelha grossa */
-    color: #ff0000; /* Texto Vermelho */
+    width: 250px; 
+    background-color: #ffffff; 
+    border: 3px solid #ff0000; 
+    color: #ff0000; 
     padding: 15px;
-    border-radius: 8px; /* Cantos levemente arredondados */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra para destacar do fundo preto */
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
     font-size: 0.9rem;
     z-index: 20;
     text-align: left;
@@ -159,4 +162,18 @@ color: #ff0055;
     text-transform: uppercase;
     border-bottom: 1px solid #ffcccc;
     padding-bottom: 5px;
+}
+
+/* CONTAINER DO JOGO FIXO */
+#game-container {
+    position: fixed; /* Mudei para fixed para garantir tela cheia */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
 }
