@@ -7,8 +7,6 @@ const uiLayer = document.getElementById('ui-layer');
 const gameContainer = document.getElementById('game-container');
 const closeBtn = document.getElementById('close-btn');
 
-
-
 addGameBtn.addEventListener('click', () => {
     romUpload.click();
 });
@@ -31,10 +29,11 @@ romUpload.addEventListener('change', (event) => {
     }
 });
 
-
-
 function iniciarJogo(file) {
-    uiLayer.classList.add('ui-hidden');
+    // FORÇA O MENU A SUMIR
+    uiLayer.style.display = 'none'; 
+    
+    // Mostra o botão sair
     closeBtn.classList.remove('hidden');
     
     const fileURL = URL.createObjectURL(file);
@@ -42,11 +41,9 @@ function iniciarJogo(file) {
 
     console.log(`Iniciando: ${file.name} | Core: ${core}`);
 
-    
     window.EJS_onGameExit = function() {
         resetarEmulador();
     };
-    
     
     const script = document.createElement('script');
     script.innerHTML = `
@@ -64,9 +61,7 @@ function iniciarJogo(file) {
     gameContainer.appendChild(loaderScript);
 }
 
-
 function resetarEmulador() {
-    
     window.location.reload();
 }
 
@@ -80,7 +75,7 @@ function detectarCore(filename) {
         case 'smc':  
         case 'sfc': return 'snes';
         
-        
+        // MAME/ARCADE/NEOGEO
         case 'zip':  
         case '7z': return 'fbneo'; 
         
