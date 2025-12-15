@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>emuHARD Web</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button id="close-btn" class="hidden">✖ Sair</button>
+
+    <div id="ui-layer">
+        <div class="notice-box">
+        <strong>⚠ AVISO</strong>
+        <p>Rom MAME. ainda estou resolvendo!</p>
+        <p>Não esqueça de salvar seu jogo antes de sair!</p>
+        <p>Projeto grande vindo ae kkkkk preciso desses apps pequenos.</p>
+    </div>
+    <div class="emulator-box">
+        <div class="emulator-box">
+            <div id="status-message">emuHARD</div>
+            
+            <div id="file-info" style="display: none;">
+                Carregando: <span id="filename-display" class="highlight">...</span>
+            </div>
+            
+            <input type="file" id="rom-upload" accept=".gba,.nes,.snes,.smc,.sfc,.zip,.7z,.z64,.n64,.nds" style="display: none;">
+            
+            <button id="add-game-btn" class="fab-btn">+</button>
+        </div>
+
+        <div class="contact-footer">
+    <p>Desenvolvido por <a href="https://github.com/Hardjackers" target="_blank" class="dev-link">HARDJACKERS</a> | emuHARD System</p>
+</div>
+    </div>
+
+    <div id="game-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
