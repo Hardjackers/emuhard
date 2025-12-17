@@ -2,21 +2,40 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
     <title>emuHARD Web</title>
+    
     <link rel="stylesheet" href="style.css">
+
+    <link rel="manifest" href="manifest.json">
+    
+    <meta name="theme-color" content="#000000">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="emuHARD">
+    <meta name="author" content="Hardjackers">
+<meta name="copyright" content="Hardjackers">
+<meta name="description" content="Emulador Web desenvolvido por Hardjackers. Jogue GBA, SNES e Arcade direto no navegador.">
+    
+    <link rel="apple-touch-icon" href="icon.png">
 </head>
 <body>
 
     <button id="close-btn" class="hidden">✖ Sair</button>
+    
+    <button id="fullscreen-btn" class="hidden">⛶ Tela Cheia</button>
 
     <div id="ui-layer">
         
         <div class="notice-box">
             <strong>⚠ AVISO</strong>
-            <p>Rom MAME: ainda estou resolvendo. SORRY.</p>
+            <p>Rom MAME: Atento a versao. baixe por; <br> "FBNeo Roms" ou "FinalBurn Neo Roms".</p>
             <p>Não esqueça de salvar seu jogo antes de sair!</p>
-            <p>Projeto grande vindo ae! kkkkk</p>
+            <p>ainda em atualização! alguns jogos travaram em celulares.</p>
+            <p>Pc funcionando normalmente!</p>
         </div>
 
         <div class="emulator-box">
@@ -32,9 +51,11 @@
         </div>
 
         <div class="contact-footer">
-            <p>Desenvolvido por <a href="https://github.com/Hardjackers" target="_blank" class="dev-link">HARDJACKERS</a> | emuHARD System</p>
-        </div>
-    </div>
+    <p>
+        © 2025 <strong>HARDJACKERS</strong>. Todos os direitos reservados.<br>
+        emuHARD System v1.1 | <a href="https://github.com/Hardjackers" target="_blank" class="dev-link">GitHub Oficial</a>
+    </p>
+</div>
 
     <div id="game-container"></div>
 
