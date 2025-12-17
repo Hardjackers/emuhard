@@ -6,6 +6,7 @@ const fileNameDisplay = document.getElementById('filename-display');
 const uiLayer = document.getElementById('ui-layer');
 const gameContainer = document.getElementById('game-container');
 const closeBtn = document.getElementById('close-btn');
+const fullscreenBtn = document.getElementById('fullscreen-btn');
 
 addGameBtn.addEventListener('click', () => {
     romUpload.click();
@@ -29,36 +30,48 @@ romUpload.addEventListener('change', (event) => {
     }
 });
 
+fullscreenBtn.addEventListener('click', () => {
+    toggleFullScreen();
+});
+
 function iniciarJogo(file) {
-    // FORÇA O MENU A SUMIR
-    uiLayer.style.display = 'none'; 
     
-    // Mostra o botão sair
+    const menuLayer = document.getElementById('ui-layer');
+    if (menuLayer) menuLayer.style.display = 'none'; 
+    
     closeBtn.classList.remove('hidden');
+    fullscreenBtn.classList.remove('hidden');
+    
     
     const fileURL = URL.createObjectURL(file);
     const core = detectarCore(file.name);
 
-    console.log(`Iniciando: ${file.name} | Core: ${core}`);
+    console.log(`Mobile Mode: ${file.name} | Core: ${core}`);
 
+    
+    window.EJS_player = '#game-container';
+    window.EJS_core = core;
+    window.EJS_gameUrl = fileURL;
+    window.EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/';
+    window.EJS_startOnLoaded = true;
+    window.EJS_biosUrl = ''; 
+    
+    
+    window.EJS_threads = false; 
+    
+    window.EJS_defaultOptions = {
+        'nocrt': true, 
+    };
+
+    
     window.EJS_onGameExit = function() {
         resetarEmulador();
     };
     
-    const script = document.createElement('script');
-    script.innerHTML = `
-        EJS_player = '#game-container';
-        EJS_core = '${core}'; 
-        EJS_gameUrl = '${fileURL}';
-        EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/';
-        EJS_startOnLoaded = true;
-        EJS_biosUrl = ''; 
-    `;
-    gameContainer.appendChild(script);
     
-    const loaderScript = document.createElement('script');
-    loaderScript.src = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/loader.js';
-    gameContainer.appendChild(loaderScript);
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/loader.js';
+    document.body.appendChild(script)
 }
 
 function resetarEmulador() {
@@ -75,7 +88,7 @@ function detectarCore(filename) {
         case 'smc':  
         case 'sfc': return 'snes';
         
-        // MAME/ARCADE/NEOGEO
+        
         case 'zip':  
         case '7z': return 'fbneo'; 
         
@@ -87,3 +100,25 @@ function detectarCore(filename) {
         default: return 'gba';
     }
 }
+
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        
+        document.documentElement.requestFullscreen().catch(err => {
+            console.log(`Erro ao tentar tela cheia: ${err.message}`);
+        });
+    } else {
+        
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+}
+
+/**
+ * emuHARD Web System
+ * Desenvolvido por: Hardjackers
+ * Versão: 1.0 (2025)
+ * GitHub: https://github.com/Hardjackers
+ * * Este projeto é pessoal e protegido por direitos de autoria.
+ */
