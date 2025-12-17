@@ -1,3 +1,11 @@
+/**
+ * emuHARD Web System
+ * Desenvolvido por: Hardjackers
+ * Versão: 1.0 (2025)
+ * GitHub: https://github.com/Hardjackers
+ * * Este projeto é pessoal e protegido por direitos de autoria.
+ */
+
 const addGameBtn = document.getElementById('add-game-btn');
 const romUpload = document.getElementById('rom-upload');
 const statusMsg = document.getElementById('status-message');
@@ -7,6 +15,8 @@ const uiLayer = document.getElementById('ui-layer');
 const gameContainer = document.getElementById('game-container');
 const closeBtn = document.getElementById('close-btn');
 const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+
 
 addGameBtn.addEventListener('click', () => {
     romUpload.click();
@@ -24,6 +34,7 @@ romUpload.addEventListener('change', (event) => {
         fileNameDisplay.innerText = file.name;
         fileInfo.style.display = "block";
         
+        
         setTimeout(() => {
             iniciarJogo(file);
         }, 800);
@@ -34,10 +45,12 @@ fullscreenBtn.addEventListener('click', () => {
     toggleFullScreen();
 });
 
+
+
 function iniciarJogo(file) {
     
-    const menuLayer = document.getElementById('ui-layer');
-    if (menuLayer) menuLayer.style.display = 'none'; 
+    if (uiLayer) uiLayer.style.display = 'none'; 
+    
     
     closeBtn.classList.remove('hidden');
     fullscreenBtn.classList.remove('hidden');
@@ -71,14 +84,14 @@ function iniciarJogo(file) {
     
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/loader.js';
-    document.body.appendChild(script)
+    document.body.appendChild(script);
 }
 
 function resetarEmulador() {
     window.location.reload();
 }
 
-function detectarCore(filename) {
+function detectingCore(filename) { 
     const ext = filename.split('.').pop().toLowerCase();
 
     switch(ext) {
@@ -97,8 +110,14 @@ function detectarCore(filename) {
         case 'nds': return 'nds';
         case 'gen':
         case 'md': return 'segaMD';
+        
         default: return 'gba';
     }
+}
+
+
+function detectarCore(filename) {
+    return detectingCore(filename);
 }
 
 function toggleFullScreen() {
@@ -114,11 +133,3 @@ function toggleFullScreen() {
         }
     }
 }
-
-/**
- * emuHARD Web System
- * Desenvolvido por: Hardjackers
- * Versão: 1.0 (2025)
- * GitHub: https://github.com/Hardjackers
- * * Este projeto é pessoal e protegido por direitos de autoria.
- */
